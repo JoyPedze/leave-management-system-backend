@@ -1,11 +1,11 @@
 package com.jp.lms.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 /**
  * @author : Joy Pedze
@@ -13,22 +13,22 @@ import java.util.List;
  * @Date : 28 August 2023
  * @Project : lms
  */
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Level {
+public class Department {
     @Id
     @GeneratedValue
     private Long id;
     private String name;
-    @ManyToMany
-    private List<Department> department;
-    private Long weight;
+    private String shortName;
+    private String email;
 
-    public Level(String name, List<Department> department, Long weight) {
+    public Department(String name, String shortName, String email) {
         this.name = name;
-        this.department = department;
-        this.weight = weight;
+        this.shortName = shortName;
+        this.email = email;
     }
 }

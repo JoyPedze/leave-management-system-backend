@@ -1,6 +1,6 @@
 package com.jp.lms.repository;
 
-import com.jp.lms.model.User;
+import com.jp.lms.model.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface DepartmentRepository extends JpaRepository<Department, Long> {
 }

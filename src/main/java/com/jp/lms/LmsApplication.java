@@ -1,8 +1,10 @@
 package com.jp.lms;
 
+import com.jp.lms.model.Department;
 import com.jp.lms.model.Level;
 import com.jp.lms.model.User;
 import com.jp.lms.model.Workflow;
+import com.jp.lms.repository.DepartmentRepository;
 import com.jp.lms.repository.LevelRepository;
 import com.jp.lms.repository.UserRepository;
 import com.jp.lms.repository.WorkflowRepository;
@@ -21,11 +23,15 @@ public class LmsApplication {
 	}
 
 	@Bean
-	CommandLineRunner commandLineRunner(LevelRepository levelRepository, UserRepository userRepository, WorkflowRepository workflowRepository){
+	CommandLineRunner commandLineRunner(DepartmentRepository departmentRepository, LevelRepository levelRepository, UserRepository userRepository, WorkflowRepository workflowRepository){
 		return args -> {
-			Level level1 = new Level("HOD","Software",20L);
-			Level level2 = new Level("Manager","Software",10L);
-			Level level3 = new Level("HR","Human Resources",30L);
+			Department softwareDepartment = new Department("Software", "SFT", "software@jp.com");
+			Department hrDepartment = new Department("Human Resources", "HR", "hr@jp.com");
+			departmentRepository.saveAll(List.of(softwareDepartment,hrDepartment));
+
+			Level level1 = new Level("HOD",List.of(softwareDepartment),20L);
+			Level level2 = new Level("Manager",List.of(softwareDepartment),10L);
+			Level level3 = new Level("HR",List.of(hrDepartment),30L);
 			levelRepository.saveAll(List.of(level1,level2,level3));
 
 			Workflow workflow1 = new Workflow("Software Staff", List.of(level1,level2,level3));

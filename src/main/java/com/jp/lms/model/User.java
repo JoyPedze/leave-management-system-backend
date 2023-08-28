@@ -5,6 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @author : Joy Pedze
+ * @Email : joyp.pedze@gmail.com
+ * @Date : 28 August 2023
+ * @Project : lms
+ */
+
 @Entity
 @Data
 @Table(name = "_user")

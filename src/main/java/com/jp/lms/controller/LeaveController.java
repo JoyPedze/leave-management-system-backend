@@ -1,8 +1,10 @@
 package com.jp.lms.controller;
 
+import com.jp.lms.model.Department;
 import com.jp.lms.model.Level;
 import com.jp.lms.model.User;
 import com.jp.lms.model.Workflow;
+import com.jp.lms.repository.DepartmentRepository;
 import com.jp.lms.repository.LevelRepository;
 import com.jp.lms.repository.UserRepository;
 import com.jp.lms.repository.WorkflowRepository;
@@ -21,6 +23,7 @@ public class LeaveController {
     private final LevelRepository levelRepository;
     private final WorkflowRepository workflowRepository;
     private final UserRepository userRepository;
+    private final DepartmentRepository departmentRepository;
 
     @GetMapping("levels")
     public List<Level> getLevels(){
@@ -35,6 +38,11 @@ public class LeaveController {
     @GetMapping("users")
     public List<User> getUsers(){
         return userRepository.findAll();
+    }
+
+    @GetMapping("departments")
+    public List<Department> getDepartments(){
+        return departmentRepository.findAll();
     }
 
 
