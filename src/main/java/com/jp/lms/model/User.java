@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * @author : Joy Pedze
  * @Email : joyp.pedze@gmail.com
@@ -26,17 +28,21 @@ public class User {
     private String lastName;
     private String email;
     private String staffPosition;
+
+    @ManyToMany
+    private List<Department> department;
     @Enumerated(value = EnumType.ORDINAL)
     private Gender gender;
     @OneToOne
     @JoinColumn(name = "workflow_id")
     private Workflow workflow;
 
-    public User(String firstName, String lastName, String email, String staffPosition, Gender gender, Workflow workflow) {
+    public User(String firstName, String lastName, String email, String staffPosition, List<Department> department, Gender gender, Workflow workflow) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.staffPosition = staffPosition;
+        this.department = department;
         this.gender = gender;
         this.workflow = workflow;
     }
