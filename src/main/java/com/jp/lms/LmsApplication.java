@@ -4,6 +4,7 @@ import com.jp.lms.model.Department;
 import com.jp.lms.model.Level;
 import com.jp.lms.model.User;
 import com.jp.lms.model.Workflow;
+import com.jp.lms.model.enums.Gender;
 import com.jp.lms.repository.DepartmentRepository;
 import com.jp.lms.repository.LevelRepository;
 import com.jp.lms.repository.UserRepository;
@@ -37,7 +38,7 @@ public class LmsApplication {
 			Workflow workflow1 = new Workflow("Software Staff", List.of(level1,level2,level3));
 			workflowRepository.save(workflow1);
 
-			User user1 = new User("Joy Pedze", "joyp@kenac.co.zw", workflow1);
+			User user1 = new User("Joy", "Pedze", "joyp@kenac.co.zw","Software Developer", Gender.MALE, workflow1);
 			userRepository.save(user1);
 
 		};

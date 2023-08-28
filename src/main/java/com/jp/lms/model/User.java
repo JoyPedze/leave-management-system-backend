@@ -1,5 +1,6 @@
 package com.jp.lms.model;
 
+import com.jp.lms.model.enums.Gender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,15 +22,22 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String email;
+    private String staffPosition;
+    @Enumerated(value = EnumType.ORDINAL)
+    private Gender gender;
     @OneToOne
     @JoinColumn(name = "workflow_id")
     private Workflow workflow;
 
-    public User(String name, String email, Workflow workflow) {
-        this.name = name;
+    public User(String firstName, String lastName, String email, String staffPosition, Gender gender, Workflow workflow) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
+        this.staffPosition = staffPosition;
+        this.gender = gender;
         this.workflow = workflow;
     }
 }
