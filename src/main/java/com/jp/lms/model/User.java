@@ -15,11 +15,12 @@ import java.util.List;
  * @Project : lms
  */
 
-@Entity
+
 @Data
-@Table(name = "_user")
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity(name = "User")
+@Table(name = "_user")
 public class User {
     @Id
     @GeneratedValue

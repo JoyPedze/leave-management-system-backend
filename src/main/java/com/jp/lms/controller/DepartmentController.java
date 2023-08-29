@@ -1,11 +1,15 @@
 package com.jp.lms.controller;
 
+import com.jp.lms.dto.payload.DepartmentRequest;
+import com.jp.lms.dto.response.DepartmentResponse;
+import com.jp.lms.dto.response.RequestSuccessful;
 import com.jp.lms.model.Department;
 import com.jp.lms.repository.DepartmentRepository;
+import com.jp.lms.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,10 +24,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/departments/")
 public class DepartmentController {
-    private final DepartmentRepository departmentRepository;
+    private final DepartmentService departmentService;
 
     @GetMapping("getAll")
-    public List<Department> getDepartments(){
-        return departmentRepository.findAll();
+    public ResponseEntity<List<DepartmentResponse>> getDepartments(){
+        return new ResponseEntity<>(departmentService.getDepartments(), HttpStatus.OK);
+    }
+
+    @PostMapping("save")
+    public ResponseEntity<RequestSuccessful> saveDepartment(@RequestBody DepartmentRequest departmentRequest){
+        return new ResponseEntity<>(departmentService.saveDepartment(departmentRequest),HttpStatus.CREATED);
     }
 }

@@ -1,11 +1,15 @@
 package com.jp.lms.controller;
 
+import com.jp.lms.dto.payload.WorkflowRequest;
+import com.jp.lms.dto.response.RequestSuccessful;
+import com.jp.lms.dto.response.WorkflowResponse;
 import com.jp.lms.model.Workflow;
 import com.jp.lms.repository.WorkflowRepository;
+import com.jp.lms.service.WorkflowService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,10 +24,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/workflows/")
 public class WorkflowController {
-    private final WorkflowRepository workflowRepository;
+    private final WorkflowService workflowService;
 
     @GetMapping("getAll")
-    public List<Workflow> getWorkflows(){
-        return workflowRepository.findAll();
+    public ResponseEntity<List<WorkflowResponse>> getWorkflows(){
+        return new ResponseEntity<>(workflowService.getWorkflows(), HttpStatus.OK);
+    }
+
+    @PostMapping("save")
+    public ResponseEntity<RequestSuccessful> saveWorkflow(@RequestBody WorkflowRequest workflowRequest){
+        return new ResponseEntity<>(workflowService.saveWorkflow(workflowRequest),HttpStatus.CREATED);
     }
 }

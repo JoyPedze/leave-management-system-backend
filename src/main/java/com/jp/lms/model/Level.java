@@ -13,10 +13,12 @@ import java.util.List;
  * @Date : 28 August 2023
  * @Project : lms
  */
-@Entity
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity(name = "Level")
+@Table(name = "level")
 public class Level {
     @Id
     @GeneratedValue

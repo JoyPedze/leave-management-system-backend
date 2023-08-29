@@ -14,16 +14,18 @@ import java.util.List;
  * @Project : lms
  */
 
-@Entity
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity(name = "Workflow")
+@Table(name = "workflow")
 public class Workflow {
     @Id
     @GeneratedValue
     private Long id;
     private String name;
-    @OneToMany
+    @ManyToMany
     private List<Level> level;
 
     public Workflow(String name, List<Level> level) {

@@ -4,6 +4,8 @@ import com.jp.lms.model.Level;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author : Joy Pedze
  * @Email : joyp.pedze@gmail.com
@@ -12,4 +14,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface LevelRepository extends JpaRepository<Level , Long> {
+    List<Level> findAllByNameIgnoreCaseIn(List<String> names);
 }

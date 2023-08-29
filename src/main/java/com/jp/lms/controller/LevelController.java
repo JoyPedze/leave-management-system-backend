@@ -1,11 +1,15 @@
 package com.jp.lms.controller;
 
+import com.jp.lms.dto.payload.LevelRequest;
+import com.jp.lms.dto.response.LevelResponse;
+import com.jp.lms.dto.response.RequestSuccessful;
 import com.jp.lms.model.Level;
 import com.jp.lms.repository.LevelRepository;
+import com.jp.lms.service.LevelService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,10 +24,16 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/levels/")
 public class LevelController {
-    private final LevelRepository levelRepository;
+    private final LevelService levelService;
 
     @GetMapping("getAll")
-    public List<Level> getLevels(){
-        return levelRepository.findAll();
+    public ResponseEntity<List<LevelResponse>> getLevels(){
+        return new ResponseEntity<>(levelService.getLevels(), HttpStatus.OK);
+    }
+
+    @PostMapping("save")
+    public ResponseEntity<RequestSuccessful> saveLevel(@RequestBody LevelRequest levelRequest){
+        return new ResponseEntity<>(levelService.saveLevel(levelRequest),HttpStatus.CREATED);
+
     }
 }

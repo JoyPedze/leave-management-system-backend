@@ -1,8 +1,10 @@
 package com.jp.lms.model;
 
 import com.jp.lms.model.enums.LeaveStatus;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author : Joy Pedze
@@ -11,7 +13,14 @@ import jakarta.persistence.Enumerated;
  * @Project : lms
  */
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name = "Approvals")
+@Table(name = "approvals")
 public class Approvals {
+    @Id
+    @GeneratedValue
     private Long id;
     private String levelName;
     private String levelWeight;
