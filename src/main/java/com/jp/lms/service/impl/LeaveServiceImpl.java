@@ -4,7 +4,6 @@ import com.jp.lms.dto.payload.LeaveRequest;
 import com.jp.lms.dto.response.RequestSuccessful;
 import com.jp.lms.model.Leave;
 import com.jp.lms.model.LeaveType;
-import com.jp.lms.model.Level;
 import com.jp.lms.model.User;
 import com.jp.lms.model.enums.LeaveStatus;
 import com.jp.lms.repository.LeaveRepository;
