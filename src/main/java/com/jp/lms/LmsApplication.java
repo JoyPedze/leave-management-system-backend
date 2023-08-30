@@ -1,14 +1,8 @@
 package com.jp.lms;
 
-import com.jp.lms.model.Department;
-import com.jp.lms.model.Level;
-import com.jp.lms.model.User;
-import com.jp.lms.model.Workflow;
+import com.jp.lms.model.*;
 import com.jp.lms.model.enums.Gender;
-import com.jp.lms.repository.DepartmentRepository;
-import com.jp.lms.repository.LevelRepository;
-import com.jp.lms.repository.UserRepository;
-import com.jp.lms.repository.WorkflowRepository;
+import com.jp.lms.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,8 +18,16 @@ public class LmsApplication {
 	}
 
 	@Bean
-	CommandLineRunner commandLineRunner(DepartmentRepository departmentRepository, LevelRepository levelRepository, UserRepository userRepository, WorkflowRepository workflowRepository){
+	CommandLineRunner commandLineRunner(LeaveTypeRepository leaveTypeRepository,
+										DepartmentRepository departmentRepository,
+										LevelRepository levelRepository,
+										UserRepository userRepository,
+										WorkflowRepository workflowRepository){
 		return args -> {
+			LeaveType annualLeave = new LeaveType("Annual Leave", 15L);
+			LeaveType sickLeave = new LeaveType("Sick Leave", 180L);
+			leaveTypeRepository.saveAll(List.of(annualLeave,sickLeave));
+
 			Department softwareDepartment = new Department("Software", "SFT", "software@jp.com");
 			Department hrDepartment = new Department("Human Resources", "HR", "hr@jp.com");
 			departmentRepository.saveAll(List.of(softwareDepartment,hrDepartment));

@@ -26,4 +26,5 @@ public class Approvals {
     private String levelWeight;
     @Enumerated(value = EnumType.ORDINAL)
     private LeaveStatus leaveStatus;
+    private String reason;
 }
