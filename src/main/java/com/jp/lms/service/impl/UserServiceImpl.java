@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
                         user.getLastName(),
                         user.getEmail(),
                         user.getStaffPosition(),
+                        user.getLevel(),
                         user.getDepartment(),
                         user.getGender(),
                         user.getWorkflow().getName(),

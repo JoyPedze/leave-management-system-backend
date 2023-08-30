@@ -40,11 +40,10 @@ public class LmsApplication {
 			Workflow workflow1 = new Workflow("Software Staff", List.of(level1,level2,level3));
 			workflowRepository.save(workflow1);
 
-			User user1 = new User("Joy", "Pedze", "joyp@kenac.co.zw","Software Developer", List.of(softwareDepartment),Gender.MALE, workflow1);
-			User user2 = new User("Tania", "Pedze", "taniap@kenac.co.zw","Software Developer", List.of(softwareDepartment),Gender.FEMALE, workflow1);
-			User user3 = new User("Praise", "Pedze", "praisep@kenac.co.zw","Software Developer", List.of(hrDepartment),Gender.FEMALE, workflow1);
+			User user1 = new User("Joy", "Pedze", "joyp@kenac.co.zw","Software Developer",level1, List.of(softwareDepartment),Gender.MALE, workflow1);
+			User user2 = new User("Tania", "Pedze", "taniap@kenac.co.zw","Software Developer", level2, List.of(softwareDepartment),Gender.FEMALE, workflow1);
+			User user3 = new User("Praise", "Pedze", "praisep@kenac.co.zw","Software Developer", level3, List.of(hrDepartment),Gender.FEMALE, workflow1);
 			userRepository.saveAll(List.of(user1));
-
 		};
 	}
 

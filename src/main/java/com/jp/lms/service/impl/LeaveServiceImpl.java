@@ -40,7 +40,6 @@ public class LeaveServiceImpl implements LeaveService {
         User user = userRepository.findById(leaveRequest.getUserId()).get();
         user.getWorkflow().getLevel().forEach(level -> level.setLeaveStatus(LeaveStatus.PENDING));
 
-
         Period period = Period.between(leaveRequest.getEndDate(),leaveRequest.getStartDate());
         Integer numOfDaysRequested = period.getDays();
 
