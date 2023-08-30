@@ -1,7 +1,10 @@
 package com.jp.lms.service;
 
 import com.jp.lms.dto.payload.LeaveRequest;
+import com.jp.lms.dto.response.LeaveResponse;
 import com.jp.lms.dto.response.RequestSuccessful;
+
+import java.util.List;
 
 /**
  * @author : Joy Pedze
@@ -11,4 +14,6 @@ import com.jp.lms.dto.response.RequestSuccessful;
  */
 public interface LeaveService {
     RequestSuccessful applyLeave(LeaveRequest leaveRequest);
+
+    List<LeaveResponse> getLeaves();
 }

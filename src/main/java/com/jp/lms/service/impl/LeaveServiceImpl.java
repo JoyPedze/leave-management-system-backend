@@ -1,6 +1,7 @@
 package com.jp.lms.service.impl;
 
 import com.jp.lms.dto.payload.LeaveRequest;
+import com.jp.lms.dto.response.LeaveResponse;
 import com.jp.lms.dto.response.RequestSuccessful;
 import com.jp.lms.model.Leave;
 import com.jp.lms.model.LeaveType;
@@ -16,9 +17,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.Period;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
+
 
 /**
  * @author : Joy Pedze
@@ -55,5 +56,22 @@ public class LeaveServiceImpl implements LeaveService {
        leaveRepository.save(leave);
 
         return new RequestSuccessful(HttpStatus.CREATED,"Leave Application Successful", LocalDateTime.now());
+    }
+
+    @Override
+    public List<LeaveResponse> getLeaves() {
+        return leaveRepository
+                .findAll()
+                .stream()
+                .map(leave -> new LeaveResponse(
+                        leave.getStartDate(),
+                        leave.getEndDate(),
+                        leave.getNumOfDaysRequested(),
+                        leave.getHandoverTo(),
+                        leave.getReason(),
+                        leave.getLeaveType(),
+                        leave.getUser()
+                ))
+                .collect(Collectors.toList());
     }
 }
