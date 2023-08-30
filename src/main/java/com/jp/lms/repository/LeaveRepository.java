@@ -1,6 +1,7 @@
 package com.jp.lms.repository;
 
 import com.jp.lms.model.Leave;
+import com.jp.lms.model.LeaveType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,5 +1,8 @@
 package com.jp.lms.service;
 
+import com.jp.lms.dto.payload.LeaveRequest;
+import com.jp.lms.dto.response.RequestSuccessful;
+
 /**
  * @author : Joy Pedze
  * @Email : joyp.pedze@gmail.com
@@ -7,4 +10,5 @@ package com.jp.lms.service;
  * @Project : lms
  */
 public interface LeaveService {
+    RequestSuccessful applyLeave(LeaveRequest leaveRequest);
 }

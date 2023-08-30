@@ -1,5 +1,6 @@
 package com.jp.lms.model;
 
+import com.jp.lms.model.enums.LeaveStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +28,8 @@ public class Level {
     @ManyToMany
     private List<Department> department;
     private Long weight;
+    @Enumerated(value = EnumType.ORDINAL)
+    private LeaveStatus leaveStatus;
 
     public Level(String name, List<Department> department, Long weight) {
         this.name = name;

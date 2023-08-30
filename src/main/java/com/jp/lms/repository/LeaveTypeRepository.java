@@ -1,7 +1,9 @@
 package com.jp.lms.repository;
 
+import com.jp.lms.model.Leave;
 import com.jp.lms.model.LeaveType;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,4 +14,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface LeaveTypeRepository extends JpaRepository<LeaveType, Long> {
+    @Query("SELECT l FROM LeaveType l WHERE UPPER(l.name) = UPPER(?1)")
+    LeaveType findLeaveTypeByNameEqualsIgnoreCase(String name);
 }

@@ -3,7 +3,9 @@ package com.jp.lms.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author : Joy Pedze
@@ -14,20 +16,20 @@ import java.util.Date;
 
 @Data
 @Entity(name = "Leave")
-@Table(name = "leave")
+@Table(name = "leaves")
 public class Leave {
     @Id
     @GeneratedValue
     private Long id;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private Integer numOfDaysRequested;
     private String handoverTo;
     private String reason;
     @OneToOne
     private LeaveType leaveType;
-    @OneToOne
-    private Approvals approvals;
+//    @OneToMany
+//    private List<Level> levels;
     @OneToOne
     private User user;
 }
