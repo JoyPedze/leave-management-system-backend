@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public record LeaveResponse(
         LocalDate startDate,
         LocalDate endDate,
-        Integer numOfDaysRequested,
+        Long numOfDaysRequested,
         String handoverTo,
         String reason,
         LeaveType leaveType,

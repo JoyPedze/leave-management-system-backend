@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
 /**
  * @author : Joy Pedze
@@ -23,7 +21,7 @@ public class Leave {
     private Long id;
     private LocalDate startDate;
     private LocalDate endDate;
-    private Integer numOfDaysRequested;
+    private Long numOfDaysRequested;
     private String handoverTo;
     private String reason;
     @OneToOne

@@ -14,11 +14,14 @@ import com.jp.lms.service.LeaveService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import java.time.temporal.ChronoUnit;
 
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 
 /**
@@ -40,8 +43,7 @@ public class LeaveServiceImpl implements LeaveService {
         User user = userRepository.findById(leaveRequest.getUserId()).get();
         user.getWorkflow().getLevel().forEach(level -> level.setLeaveStatus(LeaveStatus.PENDING));
 
-        Period period = Period.between(leaveRequest.getEndDate(),leaveRequest.getStartDate());
-        Integer numOfDaysRequested = period.getDays();
+        Long numOfDaysRequested = DAYS.between(leaveRequest.getStartDate(),leaveRequest.getEndDate());
 
         Leave leave = new Leave();
         leave.setStartDate(leaveRequest.getStartDate());
