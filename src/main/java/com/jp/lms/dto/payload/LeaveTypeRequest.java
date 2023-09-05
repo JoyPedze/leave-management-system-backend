@@ -13,4 +13,5 @@ import lombok.Data;
 public class LeaveTypeRequest {
     private String name;
     private Long numOfDays;
+    private Double accumulation;
 }

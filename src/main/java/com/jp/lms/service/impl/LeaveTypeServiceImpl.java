@@ -43,6 +43,7 @@ public class LeaveTypeServiceImpl implements LeaveTypeService {
         LeaveType leaveType = new LeaveType();
         leaveType.setName(leaveTypeRequest.getName());
         leaveType.setNumOfDays(leaveTypeRequest.getNumOfDays());
+        leaveType.setAccumulation(leaveTypeRequest.getAccumulation());
         leaveTypeRepository.save(leaveType);
         return new RequestSuccessful(HttpStatus.CREATED,"Leave Type created successfully", LocalDateTime.now());
     }
