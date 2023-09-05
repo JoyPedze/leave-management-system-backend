@@ -33,7 +33,8 @@ public class LeaveTypeServiceImpl implements LeaveTypeService {
                 .map(leaveType -> new LeaveTypeResponse(
                         leaveType.getId(),
                         leaveType.getName(),
-                        leaveType.getNumOfDays()
+                        leaveType.getNumOfDays(),
+                        leaveType.getAccumulation()
                 ))
                 .collect(Collectors.toList());
     }

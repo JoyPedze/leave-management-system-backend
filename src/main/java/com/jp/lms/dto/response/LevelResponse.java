@@ -1,5 +1,6 @@
 package com.jp.lms.dto.response;
 
+import com.jp.lms.dto.response.department.DepartmentResponse;
 import com.jp.lms.model.Department;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 public record LevelResponse(
         Long id,
         String name,
-        List<Department> department,
+        List<DepartmentResponse> department,
         Long weight
 ) {
 }

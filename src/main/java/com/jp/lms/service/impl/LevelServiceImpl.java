@@ -3,6 +3,7 @@ package com.jp.lms.service.impl;
 import com.jp.lms.dto.payload.LevelRequest;
 import com.jp.lms.dto.response.LevelResponse;
 import com.jp.lms.dto.response.RequestSuccessful;
+import com.jp.lms.dto.response.department.DepartmentResponse;
 import com.jp.lms.model.Department;
 import com.jp.lms.model.Level;
 import com.jp.lms.repository.DepartmentRepository;
@@ -38,7 +39,15 @@ public class LevelServiceImpl implements LevelService {
                 .map(level -> new LevelResponse(
                         level.getId(),
                         level.getName(),
-                        level.getDepartment(),
+                        level.getDepartment()
+                                .stream()
+                                .map(department -> new DepartmentResponse(
+                                        department.getId(),
+                                        department.getName(),
+                                        department.getShortName(),
+                                        department.getEmail()
+                                ))
+                                .collect(Collectors.toList()),
                         level.getWeight()
                 ))
                 .collect(Collectors.toList());

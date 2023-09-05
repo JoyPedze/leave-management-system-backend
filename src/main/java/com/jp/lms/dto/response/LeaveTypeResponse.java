@@ -12,6 +12,7 @@ import lombok.Data;
 public record LeaveTypeResponse(
         Long id,
         String name,
-        Long numOfDays
+        Long numOfDays,
+        Double accumulation
 ) {
 }
