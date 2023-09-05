@@ -86,6 +86,7 @@ public class LeaveServiceImpl implements LeaveService {
         User user = userRepository.findById(userId).get();
         String levelName = user.getLevel().getName();
         List<Level> pendingLevels = levelRepository.findAllByNameAndLeaveStatus(levelName,LeaveStatus.PENDING);
+
         return null;
     }
 }

@@ -2,9 +2,7 @@ package com.jp.lms.model;
 
 import com.jp.lms.model.enums.LeaveStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +14,8 @@ import java.util.List;
  * @Project : lms
  */
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "Level")
