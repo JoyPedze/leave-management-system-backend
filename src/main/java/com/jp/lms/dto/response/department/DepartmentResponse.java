@@ -1,4 +1,4 @@
-package com.jp.lms.dto.response;
+package com.jp.lms.dto.response.department;
 
 /**
  * @author : Joy Pedze

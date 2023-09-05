@@ -1,10 +1,8 @@
 package com.jp.lms.controller;
 
 import com.jp.lms.dto.payload.DepartmentRequest;
-import com.jp.lms.dto.response.DepartmentResponse;
+import com.jp.lms.dto.response.department.DepartmentResponse;
 import com.jp.lms.dto.response.RequestSuccessful;
-import com.jp.lms.model.Department;
-import com.jp.lms.repository.DepartmentRepository;
 import com.jp.lms.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

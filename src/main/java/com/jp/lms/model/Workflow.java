@@ -22,11 +22,20 @@ import java.util.List;
 @Table(name = "workflow")
 public class Workflow {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "workflow_sequence",sequenceName = "workflow_sequence",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "workflow_sequence")
+    @Column(name = "id",nullable = false,updatable = false)
     private Long id;
     private String name;
     @ManyToMany
+    @JoinTable(
+            name = "level_workflow",
+            joinColumns = @JoinColumn(name = "level_id"),
+            inverseJoinColumns = @JoinColumn(name = "workflow_id")
+    )
     private List<Level> level;
+    @OneToMany(mappedBy = "workflow")
+    private List<User> users;
 
     public Workflow(String name, List<Level> level) {
         this.name = name;

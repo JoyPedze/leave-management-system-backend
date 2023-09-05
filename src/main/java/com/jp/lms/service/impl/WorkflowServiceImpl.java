@@ -1,8 +1,10 @@
 package com.jp.lms.service.impl;
 
 import com.jp.lms.dto.payload.WorkflowRequest;
-import com.jp.lms.dto.response.RequestSuccessful;
-import com.jp.lms.dto.response.WorkflowResponse;
+import com.jp.lms.dto.response.*;
+import com.jp.lms.dto.response.workflow.WorkflowDepartmentResponse;
+import com.jp.lms.dto.response.workflow.WorkflowLevelResponse;
+import com.jp.lms.dto.response.workflow.WorkflowResponse;
 import com.jp.lms.model.Level;
 import com.jp.lms.model.Workflow;
 import com.jp.lms.repository.LevelRepository;
@@ -37,6 +39,22 @@ public class WorkflowServiceImpl implements WorkflowService {
                         workflow.getId(),
                         workflow.getName(),
                         workflow.getLevel()
+                                .stream()
+                                .map(level -> new WorkflowLevelResponse(
+                                        level.getId(),
+                                        level.getName(),
+                                        level.getDepartment()
+                                                .stream()
+                                                .map(department -> new WorkflowDepartmentResponse(
+                                                        department.getId(),
+                                                        department.getName(),
+                                                        department.getShortName(),
+                                                        department.getEmail()
+                                                ))
+                                                .collect(Collectors.toList()),
+                                        level.getWeight()
+                                ))
+                                .collect(Collectors.toList())
                 ))
                 .collect(Collectors.toList());
     }

@@ -5,6 +5,7 @@ import com.jp.lms.model.LeaveType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+
 /**
  * @author : Joy Pedze
  * @Email : joyp.pedze@gmail.com

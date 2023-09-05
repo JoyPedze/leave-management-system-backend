@@ -1,6 +1,7 @@
 package com.jp.lms.repository;
 
 import com.jp.lms.model.Level;
+import com.jp.lms.model.enums.LeaveStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,6 @@ import java.util.List;
 @Repository
 public interface LevelRepository extends JpaRepository<Level , Long> {
     List<Level> findAllByNameIgnoreCaseIn(List<String> names);
+
+    List<Level> findAllByNameAndLeaveStatus(String levelName, LeaveStatus pending);
 }

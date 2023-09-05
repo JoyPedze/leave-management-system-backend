@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,18 +23,31 @@ import java.util.List;
 @Table(name = "level")
 public class Level {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "level_sequence",sequenceName = "level_sequence",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "level_sequence")
+    @Column(name = "id",nullable = false,updatable = false)
     private Long id;
+    @Column(name = "name",nullable = false,columnDefinition = "TEXT")
     private String name;
-    @ManyToMany
-    private List<Department> department;
+    @Column(name = "weight",nullable = false)
     private Long weight;
     @Enumerated(value = EnumType.ORDINAL)
     private LeaveStatus leaveStatus;
+    @ManyToMany
+    @JoinTable(
+            name = "level_department",
+            joinColumns = @JoinColumn(name = "department_id"),
+            inverseJoinColumns = @JoinColumn(name = "level_id")
+    )
+    private List<Department> department = new ArrayList<>();
+    @ManyToMany(mappedBy = "level")
+    private List<Workflow> workflows;
+    @OneToMany(mappedBy = "level")
+    private List<User> user;
 
-    public Level(String name, List<Department> department, Long weight) {
+    public Level(String name, Long weight, List<Department> department) {
         this.name = name;
-        this.department = department;
         this.weight = weight;
+        this.department = department;
     }
 }

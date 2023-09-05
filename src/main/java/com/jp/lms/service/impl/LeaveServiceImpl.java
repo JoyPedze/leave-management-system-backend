@@ -3,21 +3,18 @@ package com.jp.lms.service.impl;
 import com.jp.lms.dto.payload.LeaveRequest;
 import com.jp.lms.dto.response.LeaveResponse;
 import com.jp.lms.dto.response.RequestSuccessful;
-import com.jp.lms.model.Leave;
-import com.jp.lms.model.LeaveType;
-import com.jp.lms.model.User;
+import com.jp.lms.model.*;
 import com.jp.lms.model.enums.LeaveStatus;
 import com.jp.lms.repository.LeaveRepository;
 import com.jp.lms.repository.LeaveTypeRepository;
+import com.jp.lms.repository.LevelRepository;
 import com.jp.lms.repository.UserRepository;
 import com.jp.lms.service.LeaveService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import java.time.temporal.ChronoUnit;
 
 import java.time.LocalDateTime;
-import java.time.Period;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,6 +34,7 @@ public class LeaveServiceImpl implements LeaveService {
     private final LeaveTypeRepository leaveTypeRepository;
     private final UserRepository userRepository;
     private final LeaveRepository leaveRepository;
+    private final LevelRepository levelRepository;
     @Override
     public RequestSuccessful applyLeave(LeaveRequest leaveRequest) {
         LeaveType leaveType = leaveTypeRepository.findLeaveTypeByNameEqualsIgnoreCase(leaveRequest.getLeaveType());
@@ -74,5 +72,13 @@ public class LeaveServiceImpl implements LeaveService {
                         leave.getUser()
                 ))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<LeaveResponse> getDepartmentPendingLeaves(Long userId) {
+        User user = userRepository.findById(userId).get();
+        String levelName = user.getLevel().getName();
+        List<Level> pendingLevels = levelRepository.findAllByNameAndLeaveStatus(levelName,LeaveStatus.PENDING);
+        return null;
     }
 }

@@ -24,10 +24,9 @@ public class Leave {
     private Long numOfDaysRequested;
     private String handoverTo;
     private String reason;
-    @OneToOne
+    @OneToOne(mappedBy = "leave")
     private LeaveType leaveType;
-//    @OneToMany
-//    private List<Level> levels;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "user",referencedColumnName = "id",foreignKey = @ForeignKey(name = "leave_id_user_id_fk"))
     private User user;
 }

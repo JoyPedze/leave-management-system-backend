@@ -1,7 +1,7 @@
 package com.jp.lms.service;
 
 import com.jp.lms.dto.payload.DepartmentRequest;
-import com.jp.lms.dto.response.DepartmentResponse;
+import com.jp.lms.dto.response.department.DepartmentResponse;
 import com.jp.lms.dto.response.RequestSuccessful;
 
 import java.util.List;

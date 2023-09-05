@@ -23,7 +23,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/users/")
 public class UserController {
-    private final UserRepository userRepository;
     private final UserService userService;
 
     @GetMapping("getAll")

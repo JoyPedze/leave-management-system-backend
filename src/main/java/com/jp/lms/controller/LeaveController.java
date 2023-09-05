@@ -28,4 +28,9 @@ public class LeaveController {
         return new ResponseEntity<>(leaveService.applyLeave(leaveRequest), HttpStatus.CREATED);
     }
 
+    @GetMapping("departmentPending/{id}")
+    public ResponseEntity<List<LeaveResponse>> getDepartmentPendingLeaves(@PathVariable("id") Long userId){
+        return new ResponseEntity<>(leaveService.getDepartmentPendingLeaves(userId),HttpStatus.OK);
+    }
+
 }

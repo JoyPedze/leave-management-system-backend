@@ -2,7 +2,7 @@ package com.jp.lms.service;
 
 import com.jp.lms.dto.payload.WorkflowRequest;
 import com.jp.lms.dto.response.RequestSuccessful;
-import com.jp.lms.dto.response.WorkflowResponse;
+import com.jp.lms.dto.response.workflow.WorkflowResponse;
 
 import java.util.List;
 

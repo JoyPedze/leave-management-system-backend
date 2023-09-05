@@ -2,9 +2,7 @@ package com.jp.lms.controller;
 
 import com.jp.lms.dto.payload.WorkflowRequest;
 import com.jp.lms.dto.response.RequestSuccessful;
-import com.jp.lms.dto.response.WorkflowResponse;
-import com.jp.lms.model.Workflow;
-import com.jp.lms.repository.WorkflowRepository;
+import com.jp.lms.dto.response.workflow.WorkflowResponse;
 import com.jp.lms.service.WorkflowService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

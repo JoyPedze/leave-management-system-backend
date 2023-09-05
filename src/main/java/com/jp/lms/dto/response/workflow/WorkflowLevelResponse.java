@@ -1,6 +1,4 @@
-package com.jp.lms.dto.response;
-
-import com.jp.lms.model.Level;
+package com.jp.lms.dto.response.workflow;
 
 import java.util.List;
 
@@ -10,9 +8,10 @@ import java.util.List;
  * @Date : 29 August 2023
  * @Project : lms
  */
-public record WorkflowResponse(
+public record WorkflowLevelResponse(
         Long id,
         String name,
-        List<Level> levels
+        List<WorkflowDepartmentResponse> department,
+        Long weight
 ) {
 }

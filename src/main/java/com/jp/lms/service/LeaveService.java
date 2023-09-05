@@ -16,4 +16,6 @@ public interface LeaveService {
     RequestSuccessful applyLeave(LeaveRequest leaveRequest);
 
     List<LeaveResponse> getLeaves();
+
+    List<LeaveResponse> getDepartmentPendingLeaves(Long userId);
 }

@@ -18,11 +18,10 @@ public record UserResponse(
         String lastName,
         String email,
         String staffPosition,
-        Level level,
-        List<Department> department,
         Gender gender,
+        String level,
+        List<Department> department,
         String workflowName,
         List<Level> levels
-
 ) {
 }
