@@ -24,7 +24,8 @@ public class Leave {
     private Long numOfDaysRequested;
     private String handoverTo;
     private String reason;
-    @OneToOne(mappedBy = "leave")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // default
+    @JoinColumn(name = "leave_type_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "leave_type_id_leave_id_fk"))
     private LeaveType leaveType;
     @ManyToOne
     @JoinColumn(name = "user",referencedColumnName = "id",foreignKey = @ForeignKey(name = "leave_id_user_id_fk"))

@@ -3,6 +3,8 @@ package com.jp.lms.service.impl;
 import com.jp.lms.dto.payload.LeaveRequest;
 import com.jp.lms.dto.response.LeaveResponse;
 import com.jp.lms.dto.response.RequestSuccessful;
+import com.jp.lms.dto.response.department.DepartmentResponse;
+import com.jp.lms.dto.response.leave.LeaveDepartmentResponse;
 import com.jp.lms.model.*;
 import com.jp.lms.model.enums.LeaveStatus;
 import com.jp.lms.repository.LeaveRepository;
@@ -68,8 +70,13 @@ public class LeaveServiceImpl implements LeaveService {
                         leave.getNumOfDaysRequested(),
                         leave.getHandoverTo(),
                         leave.getReason(),
-                        leave.getLeaveType(),
-                        leave.getUser()
+                        leave.getLeaveType().getName(),
+                        leave.getUser().getFirstName(),
+                        leave.getUser().getLastName(),
+                        leave.getUser().getGender(),
+                        leave.getUser().getDepartment().stream().map(department -> new LeaveDepartmentResponse(
+                                department.getName()
+                        )).collect(Collectors.toList())
                 ))
                 .collect(Collectors.toList());
     }

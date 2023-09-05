@@ -1,9 +1,13 @@
 package com.jp.lms.dto.response;
 
+import com.jp.lms.dto.response.leave.LeaveDepartmentResponse;
+import com.jp.lms.model.Department;
 import com.jp.lms.model.LeaveType;
 import com.jp.lms.model.User;
+import com.jp.lms.model.enums.Gender;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * @author : Joy Pedze
@@ -17,7 +21,10 @@ public record LeaveResponse(
         Long numOfDaysRequested,
         String handoverTo,
         String reason,
-        LeaveType leaveType,
-        User user
+        String leaveType,
+        String firstName,
+        String lastName,
+        Gender gender,
+        List<LeaveDepartmentResponse> departments
 ) {
 }

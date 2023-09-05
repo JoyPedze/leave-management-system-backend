@@ -29,8 +29,7 @@ public class LeaveType {
     private Long numOfDays;
     @Column(name = "accumulation",nullable = false)
     private Double accumulation;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // default
-    @JoinColumn(name = "leave_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "leave_type_id_leave_id_fk"))
+    @OneToOne(mappedBy = "leaveType")
     private Leave leave;
 
     public LeaveType(String name, Long numOfDays, Double accumulation) {
