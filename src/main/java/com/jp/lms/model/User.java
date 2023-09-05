@@ -40,7 +40,12 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "level",referencedColumnName = "id",foreignKey = @ForeignKey(name = "_user_id_level_id_fk"))
     private Level level;
-    @ManyToMany(mappedBy = "user")
+    @ManyToMany
+    @JoinTable(
+            name = "_user_department",
+            joinColumns = @JoinColumn(name = "_user_id"),
+            inverseJoinColumns = @JoinColumn(name = "department_id")
+    )
     private List<Department> department;
     @ManyToOne
     @JoinColumn(name = "workflow_id",referencedColumnName = "id",foreignKey = @ForeignKey(name = "_user_id_workflow_id_fk"))

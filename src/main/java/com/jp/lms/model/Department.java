@@ -32,12 +32,7 @@ public class Department {
     private String shortName;
     @Column(name = "email",nullable = false)
     private String email;
-    @ManyToMany
-    @JoinTable(
-            name = "_user_department",
-            joinColumns = @JoinColumn(name = "_user_id"),
-            inverseJoinColumns = @JoinColumn(name = "department_id")
-    )
+    @ManyToMany(mappedBy = "department")
     private List<User> user;
     @ManyToMany(mappedBy = "department")
     private List<Level> levels;
