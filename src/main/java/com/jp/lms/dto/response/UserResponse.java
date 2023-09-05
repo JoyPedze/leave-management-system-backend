@@ -1,5 +1,7 @@
 package com.jp.lms.dto.response;
 
+import com.jp.lms.dto.response.department.DepartmentResponse;
+import com.jp.lms.dto.response.user.UserLevelResponse;
 import com.jp.lms.model.Department;
 import com.jp.lms.model.Level;
 import com.jp.lms.model.enums.Gender;
@@ -20,8 +22,8 @@ public record UserResponse(
         String staffPosition,
         Gender gender,
         String level,
-        List<Department> department,
+        List<DepartmentResponse> department,
         String workflowName,
-        List<Level> levels
+        List<UserLevelResponse> levels
 ) {
 }

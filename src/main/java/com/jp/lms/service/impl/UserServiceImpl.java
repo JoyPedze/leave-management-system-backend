@@ -1,6 +1,10 @@
 package com.jp.lms.service.impl;
 
+import com.jp.lms.dto.response.LevelResponse;
 import com.jp.lms.dto.response.UserResponse;
+import com.jp.lms.dto.response.department.DepartmentResponse;
+import com.jp.lms.dto.response.user.UserLevelResponse;
+import com.jp.lms.dto.response.workflow.WorkflowDepartmentResponse;
 import com.jp.lms.repository.UserRepository;
 import com.jp.lms.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -34,9 +38,24 @@ public class UserServiceImpl implements UserService {
                         user.getStaffPosition(),
                         user.getGender(),
                         user.getLevel().getName(),
-                        user.getDepartment(),
+                        user.getDepartment().stream().map(department -> new DepartmentResponse(
+                                department.getId(),
+                                department.getName(),
+                                department.getShortName(),
+                                department.getEmail()
+                        )).collect(Collectors.toList()),
                         user.getWorkflow().getName(),
-                        user.getWorkflow().getLevel()
+                        user.getWorkflow().getLevel().stream().map(level -> new UserLevelResponse(
+                                level.getId(),
+                                level.getName(),
+                                level.getDepartment().stream().map(department -> new WorkflowDepartmentResponse(
+                                        department.getId(),
+                                        department.getName(),
+                                        department.getShortName(),
+                                        department.getEmail()
+                                )).collect(Collectors.toList()),
+                                level.getWeight()
+                        )).collect(Collectors.toList())
                 ))
                 .collect(Collectors.toList());
     }
