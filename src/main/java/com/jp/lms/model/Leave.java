@@ -18,6 +18,7 @@ import java.time.LocalDate;
 public class Leave {
     @Id
     @GeneratedValue
+    @Column(name = "id")
     private Long id;
     private LocalDate startDate;
     private LocalDate endDate;

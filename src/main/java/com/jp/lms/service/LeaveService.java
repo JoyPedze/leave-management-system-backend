@@ -3,6 +3,7 @@ package com.jp.lms.service;
 import com.jp.lms.dto.payload.LeaveRequest;
 import com.jp.lms.dto.response.LeaveResponse;
 import com.jp.lms.dto.response.RequestSuccessful;
+import com.jp.lms.dto.response.leave.LeaveResponseWithStatus;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface LeaveService {
 
     List<LeaveResponse> getLeaves();
 
-    List<LeaveResponse> getDepartmentPendingLeaves(Long userId);
+    List<LeaveResponseWithStatus> getDepartmentPendingLeaves(Long userId);
 }

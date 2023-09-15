@@ -5,6 +5,9 @@ import com.jp.lms.dto.response.LeaveResponse;
 import com.jp.lms.dto.response.RequestSuccessful;
 import com.jp.lms.dto.response.department.DepartmentResponse;
 import com.jp.lms.dto.response.leave.LeaveDepartmentResponse;
+import com.jp.lms.dto.response.leave.LeaveResponseWithStatus;
+import com.jp.lms.dto.response.leave.PendingLeaveResponse;
+import com.jp.lms.dto.response.leave.PendingLeaveResponseWithUser;
 import com.jp.lms.model.*;
 import com.jp.lms.model.enums.LeaveStatus;
 import com.jp.lms.repository.LeaveRepository;
@@ -82,11 +85,29 @@ public class LeaveServiceImpl implements LeaveService {
     }
 
     @Override
-    public List<LeaveResponse> getDepartmentPendingLeaves(Long userId) {
+    public List<LeaveResponseWithStatus> getDepartmentPendingLeaves(Long userId) {
         User user = userRepository.findById(userId).get();
         String levelName = user.getLevel().getName();
-        List<Level> pendingLevels = levelRepository.findAllByNameAndLeaveStatus(levelName,LeaveStatus.PENDING);
-
-        return null;
+        List<LeaveResponseWithStatus> pendingLeaves = levelRepository.findAllByNameAndLeaveStatus(levelName,LeaveStatus.PENDING)
+                .stream().map(level -> new LeaveResponseWithStatus(
+                        level.getUser().stream().map(leaveResponse -> new PendingLeaveResponseWithUser(
+                                leaveResponse.getLeaves().stream().map(leave -> new PendingLeaveResponse(
+                                        leave.getStartDate(),
+                                        leave.getEndDate(),
+                                        leave.getNumOfDaysRequested(),
+                                        leave.getHandoverTo(),
+                                        leave.getReason(),
+                                        leave.getLeaveType().getName()
+                                )).collect(Collectors.toList()),
+                                leaveResponse.getFirstName(),
+                                leaveResponse.getLastName(),
+                                leaveResponse.getGender(),
+                                leaveResponse.getDepartment().stream().map(department -> new LeaveDepartmentResponse(
+                                        department.getName()
+                                )).collect(Collectors.toList())
+                        )).collect(Collectors.toList()),
+                        level.getLeaveStatus()
+                )).collect(Collectors.toList());
+        return pendingLeaves;
     }
 }

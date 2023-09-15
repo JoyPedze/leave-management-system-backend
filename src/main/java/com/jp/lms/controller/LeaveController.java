@@ -4,6 +4,7 @@ package com.jp.lms.controller;
 import com.jp.lms.dto.payload.LeaveRequest;
 import com.jp.lms.dto.response.LeaveResponse;
 import com.jp.lms.dto.response.RequestSuccessful;
+import com.jp.lms.dto.response.leave.LeaveResponseWithStatus;
 import com.jp.lms.service.LeaveService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -29,7 +30,7 @@ public class LeaveController {
     }
 
     @GetMapping("departmentPending/{id}")
-    public ResponseEntity<List<LeaveResponse>> getDepartmentPendingLeaves(@PathVariable("id") Long userId){
+    public ResponseEntity<List<LeaveResponseWithStatus>> getDepartmentPendingLeaves(@PathVariable("id") Long userId){
         return new ResponseEntity<>(leaveService.getDepartmentPendingLeaves(userId),HttpStatus.OK);
     }
 
