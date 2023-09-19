@@ -1,6 +1,5 @@
-package com.jp.lms.dto.response.workflow;
+package com.jp.lms.department;
 
-import com.jp.lms.dto.response.workflow.WorkflowLevelResponse;
 import com.jp.lms.user.User;
 
 import java.util.List;
@@ -11,9 +10,10 @@ import java.util.List;
  * @Date : 29 August 2023
  * @Project : lms
  */
-public record WorkflowResponse(
+public record DepartmentResponse(
         Long id,
         String name,
-        List<User> users
+        String shortName,
+        String email
 ) {
 }

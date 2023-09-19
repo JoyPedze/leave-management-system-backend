@@ -1,8 +1,14 @@
 package com.jp.lms;
 
-import com.jp.lms.model.*;
-import com.jp.lms.model.enums.Gender;
-import com.jp.lms.repository.*;
+import com.jp.lms.department.Department;
+import com.jp.lms.department.DepartmentRepository;
+import com.jp.lms.leave_type.LeaveType;
+import com.jp.lms.leave_type.LeaveTypeRepository;
+import com.jp.lms.user.Gender;
+import com.jp.lms.user.User;
+import com.jp.lms.user.UserRepository;
+import com.jp.lms.workflow.Workflow;
+import com.jp.lms.workflow.WorkflowRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,7 +26,6 @@ public class LmsApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(LeaveTypeRepository leaveTypeRepository,
 										DepartmentRepository departmentRepository,
-										LevelRepository levelRepository,
 										UserRepository userRepository,
 										WorkflowRepository workflowRepository){
 		return args -> {
@@ -32,17 +37,12 @@ public class LmsApplication {
 			Department hrDepartment = new Department("Human Resources", "HR", "hr@jp.com");
 			departmentRepository.saveAll(List.of(softwareDepartment,hrDepartment));
 
-			Level level1 = new Level("HOD",20L,List.of(softwareDepartment));
-			Level level2 = new Level("Manager",10L,List.of(softwareDepartment));
-			Level level3 = new Level("HR",30L,List.of(hrDepartment));
-			levelRepository.saveAll(List.of(level1,level2,level3));
-
-			Workflow workflow1 = new Workflow("Software Staff", List.of(level1,level2,level3));
+			Workflow workflow1 = new Workflow("Software Staff");
 			workflowRepository.save(workflow1);
 
-			User user1 = new User("Joy", "Pedze", "joyp@kenac.co.zw","Software Developer",Gender.MALE,level1, List.of(softwareDepartment),workflow1);
-			User user2 = new User("Tania", "Pedze", "taniap@kenac.co.zw","Software Developer",Gender.FEMALE, level2, List.of(softwareDepartment), workflow1);
-			User user3 = new User("Praise", "Pedze", "praisep@kenac.co.zw","Software Developer",Gender.FEMALE, level3, List.of(hrDepartment), workflow1);
+			User user1 = new User("Joy", "Pedze", "joyp@kenac.co.zw","Software Developer",Gender.MALE,"Software Staff", List.of(softwareDepartment));
+			User user2 = new User("Tania", "Pedze", "taniap@kenac.co.zw","Software Developer",Gender.FEMALE, "Software Staff", List.of(softwareDepartment));
+			User user3 = new User("Praise", "Pedze", "praisep@kenac.co.zw","Software Developer",Gender.FEMALE,"Software Staff", List.of(softwareDepartment));
 			userRepository.saveAll(List.of(user1,user2,user3));
 		};
 	}

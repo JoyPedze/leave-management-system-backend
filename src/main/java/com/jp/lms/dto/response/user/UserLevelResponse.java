@@ -1,6 +1,5 @@
 package com.jp.lms.dto.response.user;
 
-import com.jp.lms.dto.response.department.DepartmentResponse;
 import com.jp.lms.dto.response.workflow.WorkflowDepartmentResponse;
 
 import java.util.List;

@@ -1,9 +1,6 @@
 package com.jp.lms.dto.response.leave;
 
-import com.jp.lms.model.enums.Gender;
-
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  * @author : Joy Pedze
